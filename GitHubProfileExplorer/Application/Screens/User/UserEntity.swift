@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct User: Hashable, Equatable {
 	var username: String?
@@ -30,11 +31,6 @@ extension User: Decodable {
 		username = try? values.decode(String.self, forKey: .username)
 		photoURL = try? values.decode(URL.self, forKey: .photoURL)
 		profileURL = try? values.decode(URL.self, forKey: .profileURL)
-		followersURL = try? values.decode(URL.self, forKey: .followersURL)
-		
-		if let photoURL = photoURL,
-		   let photoData = try? Data(contentsOf: photoURL) {
-			photo = UIImage(data: photoData)
-		}
+		followersURL = try? values.decode(URL.self, forKey: .followersURL)		
 	}
 }

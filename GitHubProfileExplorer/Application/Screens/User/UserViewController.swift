@@ -18,6 +18,8 @@ final class UserViewController:
 	UISearchBarDelegate {
 	var delegate: UserViewControllerDelegate?
 	var userModel: UserModel?
+	// In a State based architecture, this cache would be stored within the Model, and used to compare
+	// with before being inserted into a returned ViewModel or wired directly through an Rx TableViewDataSourceDriver.
 	var followerData: [User]? {
 		didSet {
 			followers = followerData
@@ -69,6 +71,9 @@ final class UserViewController:
 		followers?.count ?? 0
 	}
 	
+	// With a more robust RxSwift implementation, I would utilize an RxTableViewSectionedAnimatedDataSource here.
+	// This would be accomplished by instantiating a Driver on the Model, fed by a subscription to an
+	// observable of the API endpoint.
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(
 			withIdentifier: "followerTableViewCell",
@@ -80,13 +85,16 @@ final class UserViewController:
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		guard let username = followers?[indexPath.row].username else { return }
 		tableView.deselectRow(at: indexPath, animated: true)
+		guard let username = followers?[indexPath.row].username else { return }
 		delegate?.didSelectRowForUser(username: username)
 	}
 	
 	//MARK: - UISearchBarDelegate
 	
+	// Again, with an observable implementation, I would create a local observable of the
+	// searchBar's text field, mapped through a presenter, to the model, asking the transformer
+	// for the filtered results.
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if let searchBarText = searchBar.searchTextField.text?.lowercased(), !searchBarText.isEmpty {
 			followers = followerData?.filter { $0.username?.contains(searchBarText) ?? false }

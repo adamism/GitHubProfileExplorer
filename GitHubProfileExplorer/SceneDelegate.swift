@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var router: Router?
@@ -16,7 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
-		router = Router(window: window!, navController: navController, dependencyProvider: dependencyProvider)
+		let realm = try! Realm()
+		router = Router(
+			window: window!,
+			navController: navController,
+			dependencyProvider: dependencyProvider,
+			realmHelper: dependencyProvider.makeRealmHelper(realm: realm))
+		
+		// This helps with debugging, and should be wrapped in an #IF ENV_DEV check in a real app.
+		print("Application directory: \(NSHomeDirectory())")
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
