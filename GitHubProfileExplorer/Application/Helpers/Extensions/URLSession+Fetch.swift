@@ -1,5 +1,5 @@
 //
-//  NSURL+Fetch.swift
+//  URLSession+Fetch.swift
 //  GitHubProfileExplorer
 //
 //  Created by Ai on 3/25/22.

@@ -11,7 +11,7 @@
 		017579FB27F14E4D00E408D8 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 017579FA27F14E4D00E408D8 /* Realm */; };
 		017579FD27F14E4D00E408D8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 017579FC27F14E4D00E408D8 /* RealmSwift */; };
 		01DF332127EDFD3800F80FC5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332027EDFD3800F80FC5 /* UserModel.swift */; };
-		01DF332427EE01FC00F80FC5 /* NSURL+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */; };
+		01DF332427EE01FC00F80FC5 /* URLSession+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332327EE01FC00F80FC5 /* URLSession+Fetch.swift */; };
 		01DF332A27EE5D5100F80FC5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF332827EE5D0700F80FC5 /* User.storyboard */; };
 		01DF332D27EE673E00F80FC5 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332C27EE673E00F80FC5 /* UserEntity.swift */; };
 		01DF332F27EE67A500F80FC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332E27EE67A500F80FC5 /* Constants.swift */; };
@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		017579F727F14CB000E408D8 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		01DF332027EDFD3800F80FC5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURL+Fetch.swift"; sourceTree = "<group>"; };
+		01DF332327EE01FC00F80FC5 /* URLSession+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Fetch.swift"; sourceTree = "<group>"; };
 		01DF332927EE5D0700F80FC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		01DF332C27EE673E00F80FC5 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		01DF332E27EE67A500F80FC5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 		01DF332227EE01D800F80FC5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */,
 				01DF333027EE6A5600F80FC5 /* UIImageView+Radius.swift */,
+				01DF332327EE01FC00F80FC5 /* URLSession+Fetch.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				01DF332D27EE673E00F80FC5 /* UserEntity.swift in Sources */,
 				01DF332F27EE67A500F80FC5 /* Constants.swift in Sources */,
 				01F7326227ECF0950026C136 /* SceneDelegate.swift in Sources */,
-				01DF332427EE01FC00F80FC5 /* NSURL+Fetch.swift in Sources */,
+				01DF332427EE01FC00F80FC5 /* URLSession+Fetch.swift in Sources */,
 				01F732A127ED1F870026C136 /* DependencyProvider.swift in Sources */,
 				01DF332127EDFD3800F80FC5 /* UserModel.swift in Sources */,
 				017579F827F14CB000E408D8 /* RealmHelper.swift in Sources */,

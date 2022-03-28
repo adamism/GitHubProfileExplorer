@@ -18,8 +18,9 @@ final class UserViewController:
 	UISearchBarDelegate {
 	var delegate: UserViewControllerDelegate?
 	var userModel: UserModel?
-	// In a State based architecture, this cache would be stored within the Model, and used to compare
-	// with before being inserted into a returned ViewModel or wired directly through an Rx TableViewDataSourceDriver.
+	// In a State based architecture, this cache would be stored within
+	// the Model, and used to compare with before being inserted into a
+	// returned ViewModel or wired directly through an Rx TableViewDataSourceDriver.
 	var followerData: [User]? {
 		didSet {
 			followers = followerData
@@ -55,12 +56,19 @@ final class UserViewController:
 		tableView.delegate = self
 		searchBar.delegate = self
 		tableView.keyboardDismissMode = .onDrag
-		userModel?.fetchUser { user in
+		userModel?.fetchUser { (userFound, user) in
+			// Typically, logic like this is best kept out of the VC.
+			// In a more robust architecture, these values would be returned in
+			// an observable ViewModel.
 			DispatchQueue.main.async { [self] in
-				self.photoImageView.image = user.photo
-				self.usernameLabel.text = user.username
-				self.followersLabel.text = user.followers?.count.description ?? "0"
-				self.followerData = user.followers
+				if userFound, let user = user {
+					self.photoImageView.image = user.photo
+					self.usernameLabel.text = user.username
+					self.followersLabel.text = user.followers?.count.description ?? "0"
+					self.followerData = user.followers
+				} else {
+					self.usernameLabel.text = Constants.userNotFoundString
+				}
 			}
 		}
 	}
@@ -71,9 +79,10 @@ final class UserViewController:
 		followers?.count ?? 0
 	}
 	
-	// With a more robust RxSwift implementation, I would utilize an RxTableViewSectionedAnimatedDataSource here.
-	// This would be accomplished by instantiating a Driver on the Model, fed by a subscription to an
-	// observable of the API endpoint.
+	// With a more robust RxSwift implementation, I would utilize an
+	// RxTableViewSectionedAnimatedDataSource here. This would be accomplished
+	// by instantiating a Driver on the Model, fed by a subscription to an observable
+	// of the API endpoint.
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(
 			withIdentifier: "followerTableViewCell",

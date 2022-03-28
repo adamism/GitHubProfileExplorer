@@ -10,7 +10,7 @@ import RealmSwift
 
 protocol UserModelType: AnyObject {
 	var searchString: String { get set }
-	func fetchUser(completionHandler: @escaping (User) -> Void)
+	func fetchUser(completionHandler: @escaping (Bool, User?) -> Void)
 	func fetchFollowers(followersURL: URL, completionHandler: @escaping ([User]) -> Void)
 }
 
@@ -23,19 +23,24 @@ final class UserModel: UserModelType {
 		self.realmHelper = realmHelper
 	}
 	
-	func fetchUser(completionHandler: @escaping (User) -> Void) {
+	func fetchUser(completionHandler: @escaping (Bool, User?) -> Void) {
 		if let url = URL(string: Constants.baseURL + Constants.usersPath + searchString) {
 			if var cachedRealmUser = realmHelper.validRealmUserForUsername(username: searchString),
 			   let followersURL = cachedRealmUser.followersURL {
 				self.fetchFollowers(followersURL: followersURL) { [self] followers in
 					realmHelper.saveUser(user: cachedRealmUser)
 					cachedRealmUser.followers = followers
-					completionHandler(cachedRealmUser)
+					completionHandler(true, cachedRealmUser)
 				}
 			} else {
 				URLSession.shared.fetchData(for: url) { (result: Result<User, Error>) in
 					switch result {
 					case .success(var user):
+						guard user.profileURL != nil else {
+							completionHandler(false, nil)
+							return
+						}
+						
 						if let photoURL = user.photoURL,
 						   let photoData = try? Data(contentsOf: photoURL) {
 							user.photo = UIImage(data: photoData)
@@ -44,11 +49,11 @@ final class UserModel: UserModelType {
 							self.fetchFollowers(followersURL: followersURL) { followers in
 								self.realmHelper.saveUser(user: user)
 								user.followers = followers
-								completionHandler(user)
+								completionHandler(true, user)
 							}
 						} else {
 							self.realmHelper.saveUser(user: user)
-							completionHandler(user)
+							completionHandler(true, user)
 						}
 					case .failure(let error):
 						print("Error fetching user: ", error)
