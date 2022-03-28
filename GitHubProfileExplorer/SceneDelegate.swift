@@ -10,12 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var router: Router?
 	var dependencyProvider: DependencyProvider = DependencyProvider()
+	var navController: UINavigationController = UINavigationController()
 	var window: UIWindow?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
-		router = Router(window: window!, dependencyProvider: dependencyProvider)
+		router = Router(window: window!, navController: navController, dependencyProvider: dependencyProvider)
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

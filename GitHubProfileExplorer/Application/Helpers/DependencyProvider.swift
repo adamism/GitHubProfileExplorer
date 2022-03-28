@@ -17,13 +17,15 @@ final class DependencyProvider: DependencyProviderType {
 	
 	func makeSearchViewController() -> SearchViewController {
 		let storyboard = UIStoryboard(name: "Search", bundle: nil)
-		let searchViewController = storyboard.instantiateViewController(withIdentifier: "searchViewController") as! SearchViewController
+		let searchViewController = storyboard
+			.instantiateViewController(withIdentifier: "searchViewController") as! SearchViewController
 		return searchViewController
 	}
 	
 	func makeUserViewController(with userModel: UserModel) -> UserViewController {
 		let storyboard = UIStoryboard(name: "User", bundle: nil)
-		let userViewController = storyboard.instantiateViewController(withIdentifier: "userViewController") as! UserViewController
+		let userViewController = storyboard
+			.instantiateViewController(withIdentifier: "userViewController") as! UserViewController
 		userViewController.userModel = userModel
 		return userViewController
 	}

@@ -7,22 +7,15 @@
 
 import UIKit
 
-
-final class FollowerTableViewCell: UITableViewCell {
-	@IBOutlet weak var photoImageView: UIImageView!
-	@IBOutlet weak var usernameLabel: UILabel!
-	@IBOutlet weak var followersCountLabel: UILabel!
-	
-	override func awakeFromNib() {
-		photoImageView.layer.cornerRadius = photoImageView.frame.width / 2
-	}
-}
-
 protocol UserViewControllerDelegate {
 	func didSelectRowForUser(username: String)
 }
 
-final class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+final class UserViewController:
+	UIViewController,
+	UITableViewDataSource,
+	UITableViewDelegate,
+	UISearchBarDelegate {
 	var delegate: UserViewControllerDelegate?
 	var userModel: UserModel?
 	var followerData: [User]? {
@@ -38,11 +31,7 @@ final class UserViewController: UIViewController, UITableViewDataSource, UITable
 		}
 	}
 	
-	@IBOutlet weak var photoImageView: UIImageView! {
-		didSet {
-			photoImageView.layer.cornerRadius = photoImageView.frame.width / 2
-		}
-	}
+	@IBOutlet weak var photoImageView: PhotoImageView!
 	@IBOutlet weak var usernameTitleLabel: UILabel!
 	@IBOutlet weak var usernameLabel: UILabel!
 	@IBOutlet weak var followersTitleLabel: UILabel!
@@ -75,6 +64,7 @@ final class UserViewController: UIViewController, UITableViewDataSource, UITable
 	}
 	
 	//MARK: - UITableViewDataSource
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		followers?.count ?? 0
 	}
@@ -85,17 +75,18 @@ final class UserViewController: UIViewController, UITableViewDataSource, UITable
 			for: indexPath) as! FollowerTableViewCell
 		cell.usernameLabel.text = followers?[indexPath.row].username
 		cell.photoImageView.image = followers?[indexPath.row].photo
-		cell.followersCountLabel.text = followers?[indexPath.row].followers?.count.description ?? "0" + " followers"
 		
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard let username = followers?[indexPath.row].username else { return }
+		tableView.deselectRow(at: indexPath, animated: true)
 		delegate?.didSelectRowForUser(username: username)
 	}
 	
 	//MARK: - UISearchBarDelegate
+	
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if let searchBarText = searchBar.searchTextField.text?.lowercased(), !searchBarText.isEmpty {
 			followers = followerData?.filter { $0.username?.contains(searchBarText) ?? false }

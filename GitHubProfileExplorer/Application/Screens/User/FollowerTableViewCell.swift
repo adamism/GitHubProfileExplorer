@@ -10,8 +10,4 @@ import UIKit
 final class FollowerTableViewCell: UITableViewCell {
 	@IBOutlet weak var photoImageView: PhotoImageView!
 	@IBOutlet weak var usernameLabel: UILabel!
-	
-	override func awakeFromNib() {
-//		photoImageView.layer.cornerRadius = photoImageView.circularRadius
-	}
 }

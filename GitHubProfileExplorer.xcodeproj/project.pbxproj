@@ -10,6 +10,11 @@
 		01DF332127EDFD3800F80FC5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332027EDFD3800F80FC5 /* UserModel.swift */; };
 		01DF332427EE01FC00F80FC5 /* NSURL+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */; };
 		01DF332A27EE5D5100F80FC5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF332827EE5D0700F80FC5 /* User.storyboard */; };
+		01DF332D27EE673E00F80FC5 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332C27EE673E00F80FC5 /* UserEntity.swift */; };
+		01DF332F27EE67A500F80FC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332E27EE67A500F80FC5 /* Constants.swift */; };
+		01DF333127EE6A5600F80FC5 /* UIImageView+Radius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF333027EE6A5600F80FC5 /* UIImageView+Radius.swift */; };
+		01DF333427EE6B9900F80FC5 /* FollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF333327EE6B9900F80FC5 /* FollowerTableViewCell.swift */; };
+		01DF333627EE6BCF00F80FC5 /* PhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF333527EE6BCF00F80FC5 /* PhotoImageView.swift */; };
 		01F7326027ECF0950026C136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7325F27ECF0950026C136 /* AppDelegate.swift */; };
 		01F7326227ECF0950026C136 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7326127ECF0950026C136 /* SceneDelegate.swift */; };
 		01F7326427ECF0950026C136 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7326327ECF0950026C136 /* SearchViewController.swift */; };
@@ -44,6 +49,11 @@
 		01DF332027EDFD3800F80FC5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURL+Fetch.swift"; sourceTree = "<group>"; };
 		01DF332927EE5D0700F80FC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
+		01DF332C27EE673E00F80FC5 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		01DF332E27EE67A500F80FC5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		01DF333027EE6A5600F80FC5 /* UIImageView+Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Radius.swift"; sourceTree = "<group>"; };
+		01DF333327EE6B9900F80FC5 /* FollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerTableViewCell.swift; sourceTree = "<group>"; };
+		01DF333527EE6BCF00F80FC5 /* PhotoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImageView.swift; sourceTree = "<group>"; };
 		01F7325C27ECF0950026C136 /* GitHubProfileExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubProfileExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F7325F27ECF0950026C136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01F7326127ECF0950026C136 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				01DF332327EE01FC00F80FC5 /* NSURL+Fetch.swift */,
+				01DF333027EE6A5600F80FC5 /* UIImageView+Radius.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,10 +128,31 @@
 		01DF332727EE5CC300F80FC5 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				01DF333327EE6B9900F80FC5 /* FollowerTableViewCell.swift */,
 				01DF332827EE5D0700F80FC5 /* User.storyboard */,
+				01DF332C27EE673E00F80FC5 /* UserEntity.swift */,
+				01DF332027EDFD3800F80FC5 /* UserModel.swift */,
 				01F7329227ECF3DF0026C136 /* UserViewController.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		01DF332B27EE614F00F80FC5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				01DF333227EE6B6800F80FC5 /* Views */,
+				01F7329027ECF3770026C136 /* Helpers */,
+				01DF332527EE5C9600F80FC5 /* Screens */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		01DF333227EE6B6800F80FC5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01DF333527EE6BCF00F80FC5 /* PhotoImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		01F7325327ECF0950026C136 = {
@@ -146,14 +178,12 @@
 		01F7325E27ECF0950026C136 /* GitHubProfileExplorer */ = {
 			isa = PBXGroup;
 			children = (
+				01DF332B27EE614F00F80FC5 /* Application */,
 				01F7325F27ECF0950026C136 /* AppDelegate.swift */,
 				01F7326827ECF0990026C136 /* Assets.xcassets */,
-				01DF332227EE01D800F80FC5 /* Extensions */,
 				01F7326D27ECF0990026C136 /* Info.plist */,
 				01F7326A27ECF0990026C136 /* LaunchScreen.storyboard */,
-				01F7329027ECF3770026C136 /* Models */,
 				01F7326127ECF0950026C136 /* SceneDelegate.swift */,
-				01DF332527EE5C9600F80FC5 /* Screens */,
 			);
 			path = GitHubProfileExplorer;
 			sourceTree = "<group>";
@@ -176,14 +206,15 @@
 			path = GitHubProfileExplorerUITests;
 			sourceTree = "<group>";
 		};
-		01F7329027ECF3770026C136 /* Models */ = {
+		01F7329027ECF3770026C136 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				01DF332227EE01D800F80FC5 /* Extensions */,
 				01F732A027ED1F870026C136 /* DependencyProvider.swift */,
 				01F7329C27ED1AE90026C136 /* Router.swift */,
-				01DF332027EDFD3800F80FC5 /* UserModel.swift */,
+				01DF332E27EE67A500F80FC5 /* Constants.swift */,
 			);
-			path = Models;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,10 +352,15 @@
 				01F7329327ECF3DF0026C136 /* UserViewController.swift in Sources */,
 				01F7329D27ED1AE90026C136 /* Router.swift in Sources */,
 				01F7326027ECF0950026C136 /* AppDelegate.swift in Sources */,
+				01DF333127EE6A5600F80FC5 /* UIImageView+Radius.swift in Sources */,
+				01DF332D27EE673E00F80FC5 /* UserEntity.swift in Sources */,
+				01DF332F27EE67A500F80FC5 /* Constants.swift in Sources */,
 				01F7326227ECF0950026C136 /* SceneDelegate.swift in Sources */,
 				01DF332427EE01FC00F80FC5 /* NSURL+Fetch.swift in Sources */,
 				01F732A127ED1F870026C136 /* DependencyProvider.swift in Sources */,
 				01DF332127EDFD3800F80FC5 /* UserModel.swift in Sources */,
+				01DF333627EE6BCF00F80FC5 /* PhotoImageView.swift in Sources */,
+				01DF333427EE6B9900F80FC5 /* FollowerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
