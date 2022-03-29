@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 struct User: Hashable, Equatable {
 	var username: String?

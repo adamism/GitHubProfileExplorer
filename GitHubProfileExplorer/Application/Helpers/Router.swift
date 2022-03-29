@@ -15,7 +15,7 @@ protocol RouterType: AnyObject {
 	var realmHelper: RealmHelper { get set }
 }
 
-final class Router: SearchViewControllerDelegate, UserViewControllerDelegate {
+final class Router: RouterType, SearchViewControllerDelegate, UserViewControllerDelegate {
 	var dependencyProvider: DependencyProviderType
 	var navController: UINavigationController
 	var searchViewController: SearchViewController

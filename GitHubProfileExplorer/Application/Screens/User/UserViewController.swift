@@ -16,9 +16,11 @@ final class UserViewController:
 	UITableViewDataSource,
 	UITableViewDelegate,
 	UISearchBarDelegate {
+	
 	var delegate: UserViewControllerDelegate?
 	var userModel: UserModel?
-	// In a State based architecture, this cache would be stored within
+	
+	// In a State based architecture, this "followerData" cache would be stored within
 	// the Model, and used to compare with before being inserted into a
 	// returned ViewModel or wired directly through an Rx TableViewDataSourceDriver.
 	var followerData: [User]? {

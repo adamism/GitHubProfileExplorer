@@ -10,6 +10,7 @@
 		017579F827F14CB000E408D8 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017579F727F14CB000E408D8 /* RealmHelper.swift */; };
 		017579FB27F14E4D00E408D8 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 017579FA27F14E4D00E408D8 /* Realm */; };
 		017579FD27F14E4D00E408D8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 017579FC27F14E4D00E408D8 /* RealmSwift */; };
+		01757A0327F2BD7F00E408D8 /* CachedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01757A0227F2BD7F00E408D8 /* CachedUser.swift */; };
 		01DF332127EDFD3800F80FC5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332027EDFD3800F80FC5 /* UserModel.swift */; };
 		01DF332427EE01FC00F80FC5 /* URLSession+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF332327EE01FC00F80FC5 /* URLSession+Fetch.swift */; };
 		01DF332A27EE5D5100F80FC5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF332827EE5D0700F80FC5 /* User.storyboard */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		017579F727F14CB000E408D8 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		01757A0227F2BD7F00E408D8 /* CachedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedUser.swift; sourceTree = "<group>"; };
 		01DF332027EDFD3800F80FC5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		01DF332327EE01FC00F80FC5 /* URLSession+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Fetch.swift"; sourceTree = "<group>"; };
 		01DF332927EE5D0700F80FC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		017579F627F14C8600E408D8 /* Realm Helper */ = {
 			isa = PBXGroup;
 			children = (
+				01757A0227F2BD7F00E408D8 /* CachedUser.swift */,
 				017579F727F14CB000E408D8 /* RealmHelper.swift */,
 			);
 			path = "Realm Helper";
@@ -124,8 +127,9 @@
 		01DF332527EE5C9600F80FC5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				01DF332727EE5CC300F80FC5 /* User */,
 				01DF332627EE5CBB00F80FC5 /* Search */,
+				01DF332727EE5CC300F80FC5 /* User */,
+				01DF333227EE6B6800F80FC5 /* Views */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -154,7 +158,6 @@
 		01DF332B27EE614F00F80FC5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				01DF333227EE6B6800F80FC5 /* Views */,
 				01F7329027ECF3770026C136 /* Helpers */,
 				01DF332527EE5C9600F80FC5 /* Screens */,
 			);
@@ -223,11 +226,11 @@
 		01F7329027ECF3770026C136 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				017579F627F14C8600E408D8 /* Realm Helper */,
-				01DF332227EE01D800F80FC5 /* Extensions */,
-				01F732A027ED1F870026C136 /* DependencyProvider.swift */,
-				01F7329C27ED1AE90026C136 /* Router.swift */,
 				01DF332E27EE67A500F80FC5 /* Constants.swift */,
+				01F732A027ED1F870026C136 /* DependencyProvider.swift */,
+				01DF332227EE01D800F80FC5 /* Extensions */,
+				017579F627F14C8600E408D8 /* Realm Helper */,
+				01F7329C27ED1AE90026C136 /* Router.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			files = (
 				01F7326427ECF0950026C136 /* SearchViewController.swift in Sources */,
 				01F7329327ECF3DF0026C136 /* UserViewController.swift in Sources */,
+				01757A0327F2BD7F00E408D8 /* CachedUser.swift in Sources */,
 				01F7329D27ED1AE90026C136 /* Router.swift in Sources */,
 				01F7326027ECF0950026C136 /* AppDelegate.swift in Sources */,
 				01DF333127EE6A5600F80FC5 /* UIImageView+Radius.swift in Sources */,
