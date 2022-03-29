@@ -26,11 +26,11 @@ final class Router: SearchViewControllerDelegate, UserViewControllerDelegate {
 		 dependencyProvider: DependencyProvider,
 		 realmHelper: RealmHelper) {
 		self.navController = navController
-		self.dependencyProvider = DependencyProvider()
-		self.searchViewController = dependencyProvider.makeSearchViewController()
 		self.realmHelper = realmHelper
-		self.searchViewController.delegate = self
+		self.dependencyProvider = dependencyProvider
 		
+		self.searchViewController = dependencyProvider.makeSearchViewController()
+		self.searchViewController.delegate = self
 		self.navController.viewControllers = [searchViewController]
 		window.rootViewController = navController
 		window.makeKeyAndVisible()
@@ -39,8 +39,7 @@ final class Router: SearchViewControllerDelegate, UserViewControllerDelegate {
 	// MARK: - SearchViewControllerDelegate
 	
 	func didPressGoWithString(string: String) {
-		let userModel = dependencyProvider.makeUserModel(searchString: string, realmHelper: realmHelper)
-		let userViewController = dependencyProvider.makeUserViewController(userModel: userModel)
+		let userViewController = dependencyProvider.makeUserViewController(searchString: string)
 		userViewController.delegate = self
 		navController.pushViewController(userViewController, animated: true)
 	}
@@ -48,8 +47,7 @@ final class Router: SearchViewControllerDelegate, UserViewControllerDelegate {
 	// MARK: - UserViewControllerDelegate
 	
 	func didSelectRowForUser(username: String) {
-		let userModel = dependencyProvider.makeUserModel(searchString: username, realmHelper: realmHelper)
-		let userViewController = dependencyProvider.makeUserViewController(userModel: userModel)
+		let userViewController = dependencyProvider.makeUserViewController(searchString: username)
 		userViewController.delegate = self
 		navController.pushViewController(userViewController, animated: true)
 	}

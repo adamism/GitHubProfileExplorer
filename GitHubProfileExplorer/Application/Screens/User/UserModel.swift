@@ -17,10 +17,12 @@ protocol UserModelType: AnyObject {
 final class UserModel: UserModelType {
 	var searchString: String
 	var realmHelper: RealmHelper
+	var urlSession: URLSession
 	
-	init(searchString: String, realmHelper: RealmHelper) {
+	init(searchString: String, realmHelper: RealmHelper, urlSession: URLSession) {
 		self.searchString = searchString
 		self.realmHelper = realmHelper
+		self.urlSession = urlSession
 	}
 	
 	func fetchUser(completionHandler: @escaping (Bool, User?) -> Void) {
@@ -33,7 +35,7 @@ final class UserModel: UserModelType {
 					completionHandler(true, cachedRealmUser)
 				}
 			} else {
-				URLSession.shared.fetchData(for: url) { (result: Result<User, Error>) in
+				urlSession.fetchData(for: url) { (result: Result<User, Error>) in
 					switch result {
 					case .success(var user):
 						guard user.profileURL != nil else {

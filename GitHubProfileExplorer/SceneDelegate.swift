@@ -10,7 +10,7 @@ import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var router: Router?
-	var dependencyProvider: DependencyProvider = DependencyProvider()
+	var dependencyProvider: DependencyProvider!
 	var navController: UINavigationController = UINavigationController()
 	var window: UIWindow?
 
@@ -18,11 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
 		let realm = try! Realm()
-		router = Router(
-			window: window!,
-			navController: navController,
-			dependencyProvider: dependencyProvider,
-			realmHelper: dependencyProvider.makeRealmHelper(realm: realm))
+		dependencyProvider = DependencyProvider(realm: realm)
+		router = dependencyProvider.makeRouter(window: window!, navController: navController)
 		
 		// This helps with debugging, and should be wrapped in an #IF ENV_DEV check in a real app.
 		print("Application directory: \(NSHomeDirectory())")
