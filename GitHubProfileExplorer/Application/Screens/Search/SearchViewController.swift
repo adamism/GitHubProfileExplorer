@@ -18,6 +18,7 @@ protocol SearchViewControllerType: AnyObject {
 class SearchViewController:
 	UIViewController,
 	UITextFieldDelegate,
+	UISearchBarDelegate,
 	SearchViewControllerType {
 	
 	var delegate: SearchViewControllerDelegate?
@@ -37,18 +38,30 @@ class SearchViewController:
 		self.delegate?.didPressGoWithString(string: searchString)
 	}
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		goButton.isEnabled = false
+	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.setNavigationBarHidden(true, animated: false)
 		searchBar.becomeFirstResponder()
 		searchBar.searchTextField.delegate = self
+		searchBar.delegate = self
 	}
-	
+		
 	//MARK: - UITextFieldDelegate
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		submitSearch()
 		return true
+	}
+	
+	//MARK: - UISearchBarDelegate
+
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		goButton.isEnabled = (searchBar.searchTextField.text?.count ?? 0) > 2
 	}
 	
 	//MARK: - UIViewControllerDelegate
