@@ -21,10 +21,13 @@ class SearchViewController:
 	UITextFieldDelegate,
 	UISearchBarDelegate,
 	SearchViewControllerType {
-	
 	var delegate: SearchViewControllerDelegate?
 	
-	@IBOutlet weak var searchBar: UISearchBar!
+	@IBOutlet weak var searchBar: UISearchBar! {
+		didSet {
+			searchBar.placeholder = "Enter GitHub username"
+		}
+	}
 	@IBOutlet weak var goButton: UIButton! {
 		didSet {
 			goButton.layer.cornerRadius = 8

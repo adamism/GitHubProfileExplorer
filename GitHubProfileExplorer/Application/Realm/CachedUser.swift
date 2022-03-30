@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 struct CachedUser {
-	var user: User
+	var user: GHUser
 	var insertionDate: Date
 }
 
@@ -22,7 +22,7 @@ class RealmCachedUser: Object {
 	@objc dynamic var photo: Data = Data()
 	
 	func toCachedUser() -> CachedUser {
-		let user = User(
+		let user = GHUser(
 			username: username,
 			photoURL: URL(string: photoURL),
 			profileURL: URL(string: profileURL),

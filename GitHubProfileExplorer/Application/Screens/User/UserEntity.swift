@@ -7,13 +7,13 @@
 
 import UIKit
 
-struct User: Hashable, Equatable {
+struct GHUser: Hashable {
 	var username: String?
 	var photoURL: URL?
 	var profileURL: URL?
 	var followersURL: URL?
 	var photo: UIImage?
-	var followers: [User]?
+	var followers: [GHUser]?
 	
 	enum CodingKeys: String, CodingKey {
 		case username = "login"
@@ -23,7 +23,7 @@ struct User: Hashable, Equatable {
 	}
 }
 
-extension User: Decodable {
+extension GHUser: Decodable {
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		

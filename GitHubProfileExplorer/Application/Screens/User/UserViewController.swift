@@ -11,24 +11,31 @@ protocol UserViewControllerDelegate {
 	func didSelectRowForUser(username: String)
 }
 
+protocol UserViewControllerType {
+	var delegate: UserViewControllerDelegate? { get set }
+	var userModel: UserModel? { get set }
+	var followerData: [GHUser]? { get set }
+	var followers: [GHUser]? { get set }
+}
+
 final class UserViewController:
 	UIViewController,
 	UITableViewDataSource,
 	UITableViewDelegate,
-	UISearchBarDelegate {
-	
+	UISearchBarDelegate,
+	UserViewControllerType {
 	var delegate: UserViewControllerDelegate?
 	var userModel: UserModel?
 	
 	// In a State based architecture, this "followerData" cache would be stored within
 	// the Model, and used to compare with before being inserted into a
 	// returned ViewModel or wired directly through an Rx TableViewDataSourceDriver.
-	var followerData: [User]? {
+	var followerData: [GHUser]? {
 		didSet {
 			followers = followerData
 		}
 	}
-	var followers: [User]? {
+	var followers: [GHUser]? {
 		didSet {
 			DispatchQueue.main.async { [self] in
 				self.tableView.reloadData()

@@ -7,7 +7,11 @@
 
 import UIKit
 
-extension URLSession {
+protocol GHURLSessionType {
+	func fetchData<T: Decodable>(for url: URL, completion: @escaping (Result<T, Error>) -> Void)
+}
+
+extension URLSession: GHURLSessionType {
   func fetchData<T: Decodable>(for url: URL, completion: @escaping (Result<T, Error>) -> Void) {
 	// I'm curious what your other submissions do in this scenario, where I want to make sure
 	// you all can run this as many times as you want from your IP without hitting the rate limit.

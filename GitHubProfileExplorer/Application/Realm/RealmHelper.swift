@@ -10,8 +10,8 @@ import RealmSwift
 
 protocol RealmHelperType: AnyObject {
 	var realm: Realm { get set }
-	func validRealmUserForUsername(username: String) -> User?
-	func saveUser(user: User)
+	func validRealmUserForUsername(username: String) -> GHUser?
+	func saveUser(user: GHUser)
 }
 
 final class RealmHelper: RealmHelperType {
@@ -21,7 +21,7 @@ final class RealmHelper: RealmHelperType {
 		self.realm = realm
 	}
 	
-	func validRealmUserForUsername(username: String) -> User? {
+	func validRealmUserForUsername(username: String) -> GHUser? {
 		return realm
 			.objects(RealmCachedUser.self)
 			.first(where: { realmCachedUser in
@@ -32,7 +32,7 @@ final class RealmHelper: RealmHelperType {
 			.user
 	}
 	
-	func saveUser(user: User) {
+	func saveUser(user: GHUser) {
 		guard let username = user.username,
 			  let photoURL = user.photoURL,
 			  let profileURL = user.profileURL,

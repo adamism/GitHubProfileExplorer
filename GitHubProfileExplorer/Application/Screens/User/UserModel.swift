@@ -10,22 +10,22 @@ import RealmSwift
 
 protocol UserModelType: AnyObject {
 	var searchString: String { get set }
-	func fetchUser(completionHandler: @escaping (Bool, User?) -> Void)
-	func fetchFollowers(followersURL: URL, completionHandler: @escaping ([User]) -> Void)
+	func fetchUser(completionHandler: @escaping (Bool, GHUser?) -> Void)
+	func fetchFollowers(followersURL: URL, completionHandler: @escaping ([GHUser]) -> Void)
 }
 
 final class UserModel: UserModelType {
 	var searchString: String
-	var realmHelper: RealmHelper
-	var urlSession: URLSession
+	var realmHelper: RealmHelperType
+	var api: APIType
 	
-	init(searchString: String, realmHelper: RealmHelper, urlSession: URLSession) {
+	init(searchString: String, realmHelper: RealmHelperType, api: APIType) {
 		self.searchString = searchString
 		self.realmHelper = realmHelper
-		self.urlSession = urlSession
+		self.api = api
 	}
 	
-	func fetchUser(completionHandler: @escaping (Bool, User?) -> Void) {
+	func fetchUser(completionHandler: @escaping (Bool, GHUser?) -> Void) {
 		if let url = URL(string: Constants.baseURL + Constants.usersPath + searchString) {
 			if var cachedRealmUser = realmHelper.validRealmUserForUsername(username: searchString),
 			   let followersURL = cachedRealmUser.followersURL {
@@ -35,7 +35,7 @@ final class UserModel: UserModelType {
 					completionHandler(true, cachedRealmUser)
 				}
 			} else {
-				urlSession.fetchData(for: url) { (result: Result<User, Error>) in
+				api.fetchUser(for: url) { (result: Result<GHUser, Error>) in
 					switch result {
 					case .success(var user):
 						guard user.profileURL != nil else {
@@ -65,11 +65,11 @@ final class UserModel: UserModelType {
 		}
 	}
 	
-	func fetchFollowers(followersURL: URL, completionHandler: @escaping ([User]) -> Void) {
-		URLSession.shared.fetchData(for: followersURL) { (result: Result<[User], Error>) in
+	func fetchFollowers(followersURL: URL, completionHandler: @escaping ([GHUser]) -> Void) {
+		api.fetchFollowers(for: followersURL) { (result: Result<[GHUser], Error>) in
 			switch result {
 			case .success(let followers):
-				let populatedFollowers = followers.map { user -> User in
+				let populatedFollowers = followers.map { user -> GHUser in
 					var populatedUser = user
 					if let photoURL = user.photoURL,
 					   let photoData = try? Data(contentsOf: photoURL) {

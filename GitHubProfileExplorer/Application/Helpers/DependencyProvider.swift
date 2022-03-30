@@ -10,26 +10,20 @@ import RealmSwift
 
 protocol DependencyProviderType {
 	var realmHelper: RealmHelper { get set }
-	var urlSession: URLSession { get set }
-	func makeRealmHelper(realm: Realm) -> RealmHelper
+	var api: API { get set }
 	func makeSearchViewController() -> SearchViewController
 	func makeUserViewController(searchString: String) -> UserViewController
 }
 
 final class DependencyProvider: DependencyProviderType {
-	
 	var realmHelper: RealmHelper
-	var urlSession: URLSession
+	var api: API
 	
 	init(realm: Realm) {
-		self.realmHelper = RealmHelper(realm: realm)
-		urlSession = URLSession(configuration: .default)
+		realmHelper = RealmHelper(realm: realm)
+		api = API(urlSession: URLSession(configuration: .default))
 	}
-	
-	func makeRealmHelper(realm: Realm) -> RealmHelper {
-		RealmHelper(realm: realm)
-	}
-	
+		
 	func makeRouter(window: UIWindow, navController: UINavigationController) -> Router {
 		Router(
 			window: window,
@@ -51,7 +45,7 @@ final class DependencyProvider: DependencyProviderType {
 		let userViewController = storyboard
 			.instantiateViewController(withIdentifier: "userViewController") as! UserViewController
 		
-		let userModel = UserModel(searchString: searchString, realmHelper: realmHelper, urlSession: urlSession)
+		let userModel = UserModel(searchString: searchString, realmHelper: realmHelper, api: api)
 		userViewController.userModel = userModel
 		
 		return userViewController
