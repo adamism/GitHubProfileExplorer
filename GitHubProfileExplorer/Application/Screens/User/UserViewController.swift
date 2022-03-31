@@ -58,6 +58,15 @@ final class UserViewController:
 		navigationController?.navigationBar.isTranslucent = false
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.setNavigationBarHidden(false, animated: false)
+		
+		if #available(iOS 13.0, *) {
+			let appearance = UINavigationBarAppearance()
+			appearance.configureWithOpaqueBackground()
+			appearance.backgroundColor = .systemBlue
+			appearance.shadowColor = .clear
+			navigationController?.navigationBar.standardAppearance = appearance
+			navigationController?.navigationBar.scrollEdgeAppearance = appearance
+		}
 	}
 	
 	override func viewDidLoad() {
